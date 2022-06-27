@@ -10,7 +10,7 @@ import java.util.List;
  * (Shop)表数据库访问层
  *
  * @author makejava
- * @since 2022-06-27 20:52:53
+ * @since 2022-06-27 21:38:45
  */
 public interface ShopDao {
 

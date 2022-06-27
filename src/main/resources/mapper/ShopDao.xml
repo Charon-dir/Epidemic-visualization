@@ -12,6 +12,7 @@
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
         <result property=" introduction" column=" introduction" jdbcType="VARCHAR"/>
+        <result property="img" column="img" jdbcType="VARCHAR"/>
     </resultMap>
 
     <!--查询单个-->
@@ -24,7 +25,8 @@
                open_hours,
                create_time,
                update_time,
-               introduction
+               introduction,
+               img
         from shop
         where id = #{id}
     </select>
@@ -32,7 +34,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="ShopMap">
         select
-        id, name, typed_id, address, sold, open_hours, create_time, update_time, introduction
+        id, name, typed_id, address, sold, open_hours, create_time, update_time, introduction, img
         from shop
         <where>
             <if test="id != null">
@@ -61,6 +63,9 @@
             </if>
             <if test=" introduction != null and  introduction != ''">
                 and introduction = #{ introduction}
+            </if>
+            <if test="img != null and img != ''">
+                and img = #{img}
             </if>
         </where>
         limit #{pageable.offset}, #{pageable.pageSize}
@@ -98,30 +103,34 @@
             <if test=" introduction != null and  introduction != ''">
                 and introduction = #{ introduction}
             </if>
+            <if test="img != null and img != ''">
+                and img = #{img}
+            </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into shop(name, typed_id, address, sold, open_hours, create_time, update_time, introduction)
-        values (#{name}, #{typedId}, #{address}, #{sold}, #{openHours}, #{createTime}, #{updateTime}, #{ introduction})
+        insert into shop(name, typed_id, address, sold, open_hours, create_time, update_time, introduction, img)
+        values (#{name}, #{typedId}, #{address}, #{sold}, #{openHours}, #{createTime}, #{updateTime}, #{ introduction},
+                #{img})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into shop(name, typed_id, address, sold, open_hours, create_time, update_time, introduction)
+        insert into shop(name, typed_id, address, sold, open_hours, create_time, update_time, introduction, img)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.name}, #{entity.typedId}, #{entity.address}, #{entity.sold}, #{entity.openHours},
-            #{entity.createTime}, #{entity.updateTime}, #{entity. introduction})
+            #{entity.createTime}, #{entity.updateTime}, #{entity. introduction}, #{entity.img})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into shop(name, typed_id, address, sold, open_hours, create_time, update_time, introduction)
+        insert into shop(name, typed_id, address, sold, open_hours, create_time, update_time, introduction, img)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.name}, #{entity.typedId}, #{entity.address}, #{entity.sold}, #{entity.openHours},
-            #{entity.createTime}, #{entity.updateTime}, #{entity. introduction})
+            #{entity.createTime}, #{entity.updateTime}, #{entity. introduction}, #{entity.img})
         </foreach>
         on duplicate key update
         name = values(name),
@@ -131,7 +140,8 @@
         open_hours = values(open_hours),
         create_time = values(create_time),
         update_time = values(update_time),
-        introduction = values( introduction)
+        introduction = values( introduction),
+        img = values(img)
     </insert>
 
     <!--通过主键修改数据-->
@@ -161,6 +171,9 @@
             </if>
             <if test=" introduction != null and  introduction != ''">
                 introduction = #{ introduction},
+            </if>
+            <if test="img != null and img != ''">
+                img = #{img},
             </if>
         </set>
         where id = #{id}

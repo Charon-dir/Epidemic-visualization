@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
  * (Shop)表服务接口
  *
  * @author makejava
- * @since 2022-06-27 20:52:53
+ * @since 2022-06-27 21:38:46
  */
 public interface ShopService {
 
