@@ -1,16 +1,16 @@
-package com.cdtu.epidemicvisualization.service;
+package com.cdtu.myComment.service;
 
-import com.cdtu.epidemicvisualization.entity.Patient;
+import com.cdtu.myComment.entity.Shop;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
 /**
- * (Patient)表服务接口
+ * (Shop)表服务接口
  *
  * @author makejava
- * @since 2022-06-20 20:22:58
+ * @since 2022-06-27 20:52:53
  */
-public interface PatientService {
+public interface ShopService {
 
     /**
      * 通过ID查询单条数据
@@ -18,32 +18,32 @@ public interface PatientService {
      * @param id 主键
      * @return 实例对象
      */
-    Patient queryById(Integer id);
+    Shop queryById(Integer id);
 
     /**
      * 分页查询
      *
-     * @param patient     筛选条件
+     * @param shop        筛选条件
      * @param pageRequest 分页对象
      * @return 查询结果
      */
-    Page<Patient> queryByPage(Patient patient, PageRequest pageRequest);
+    Page<Shop> queryByPage(Shop shop, PageRequest pageRequest);
 
     /**
      * 新增数据
      *
-     * @param patient 实例对象
+     * @param shop 实例对象
      * @return 实例对象
      */
-    Patient insert(Patient patient);
+    Shop insert(Shop shop);
 
     /**
      * 修改数据
      *
-     * @param patient 实例对象
+     * @param shop 实例对象
      * @return 实例对象
      */
-    Patient update(Patient patient);
+    Shop update(Shop shop);
 
     /**
      * 通过主键删除数据

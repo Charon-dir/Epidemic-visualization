@@ -1,4 +1,4 @@
-package com.cdtu.epidemicvisualization;
+package com.cdtu.myComment;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
-@MapperScan("com.cdtu.epidemicvisualization.dao")
-public class EpidemicVisualizationApplication {
+@MapperScan("com.cdtu.MyComment.dao")
+public class MyCommentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EpidemicVisualizationApplication.class, args);
+        SpringApplication.run(MyCommentApplication.class, args);
     }
 
 }

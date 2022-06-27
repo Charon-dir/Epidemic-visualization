@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.CDTU</groupId>
-    <artifactId>Epidemic-visualization</artifactId>
+    <artifactId>Comment</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Epidemic-visualization</name>
-    <description>Epidemic-visualization</description>
+    <name>Comment</name>
+    <description>Comment</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -21,10 +21,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>

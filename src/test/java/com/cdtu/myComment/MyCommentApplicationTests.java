@@ -1,10 +1,10 @@
-package com.cdtu.epidemicvisualization;
+package com.cdtu.myComment;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EpidemicVisualizationApplicationTests {
+class MyCommentApplicationTests {
 
     @Test
     void contextLoads() {

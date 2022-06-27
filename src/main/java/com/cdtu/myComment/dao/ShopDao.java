@@ -1,18 +1,18 @@
-package com.cdtu.epidemicvisualization.dao;
+package com.cdtu.myComment.dao;
 
-import com.cdtu.epidemicvisualization.entity.Provinceofchina;
+import com.cdtu.myComment.entity.Shop;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 /**
- * (Provinceofchina)表数据库访问层
+ * (Shop)表数据库访问层
  *
  * @author makejava
- * @since 2022-06-20 20:22:58
+ * @since 2022-06-27 20:52:53
  */
-public interface ProvinceofchinaDao {
+public interface ShopDao {
 
     /**
      * 通过ID查询单条数据
@@ -20,57 +20,57 @@ public interface ProvinceofchinaDao {
      * @param id 主键
      * @return 实例对象
      */
-    Provinceofchina queryById(Integer id);
+    Shop queryById(Integer id);
 
     /**
      * 查询指定行数据
      *
-     * @param provinceofchina 查询条件
-     * @param pageable        分页对象
+     * @param shop     查询条件
+     * @param pageable 分页对象
      * @return 对象列表
      */
-    List<Provinceofchina> queryAllByLimit(Provinceofchina provinceofchina, @Param("pageable") Pageable pageable);
+    List<Shop> queryAllByLimit(Shop shop, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param provinceofchina 查询条件
+     * @param shop 查询条件
      * @return 总行数
      */
-    long count(Provinceofchina provinceofchina);
+    long count(Shop shop);
 
     /**
      * 新增数据
      *
-     * @param provinceofchina 实例对象
+     * @param shop 实例对象
      * @return 影响行数
      */
-    int insert(Provinceofchina provinceofchina);
+    int insert(Shop shop);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Provinceofchina> 实例对象列表
+     * @param entities List<Shop> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<Provinceofchina> entities);
+    int insertBatch(@Param("entities") List<Shop> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Provinceofchina> 实例对象列表
+     * @param entities List<Shop> 实例对象列表
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<Provinceofchina> entities);
+    int insertOrUpdateBatch(@Param("entities") List<Shop> entities);
 
     /**
      * 修改数据
      *
-     * @param provinceofchina 实例对象
+     * @param shop 实例对象
      * @return 影响行数
      */
-    int update(Provinceofchina provinceofchina);
+    int update(Shop shop);
 
     /**
      * 通过主键删除数据
