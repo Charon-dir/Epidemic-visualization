@@ -4,6 +4,9 @@ import com.cdtu.myComment.entity.Shop;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * (Shop)表服务接口
  *
@@ -52,5 +55,7 @@ public interface ShopService {
      * @return 是否成功
      */
     boolean deleteById(Integer id);
+
+    List<Shop> getAll();
 
 }

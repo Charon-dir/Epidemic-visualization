@@ -24,8 +24,8 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
     @Resource
     private HttpSession session;
-    @Resource
-    private User user;
+//    @Resource
+//    private User user;
     /**
      * 通过ID查询单条数据
      *
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean login() {
 
-        session.setAttribute("user",user);
+//        session.setAttribute("user",user);
         return false;
     }
 }

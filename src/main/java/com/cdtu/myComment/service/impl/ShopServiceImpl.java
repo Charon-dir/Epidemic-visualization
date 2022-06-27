@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * (Shop)表服务实现类
@@ -78,5 +80,11 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public boolean deleteById(Integer id) {
         return this.shopDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<Shop> getAll() {
+        List<Shop> all = this.shopDao.getAll();
+        return all;
     }
 }

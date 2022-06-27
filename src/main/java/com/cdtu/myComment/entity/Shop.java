@@ -111,15 +111,11 @@ public class Shop implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public String get
-
-    introduction() {
+    public String getintroduction() {
         return introduction;
     }
 
-    public void set
-
-    introduction(String introduction) {
+    public void setintroduction(String introduction) {
         this.introduction = introduction;
     }
 

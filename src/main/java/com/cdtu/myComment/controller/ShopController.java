@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Shop)表控制层
@@ -35,7 +36,10 @@ public class ShopController {
     public ResponseEntity<Page<Shop>> queryByPage(Shop shop, PageRequest pageRequest) {
         return ResponseEntity.ok(this.shopService.queryByPage(shop, pageRequest));
     }
-
+    @GetMapping("/getAll")
+    public List<Shop> getAll(){
+        return this.shopService.getAll();
+    }
     /**
      * 通过主键查询单条数据
      *
