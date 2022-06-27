@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 
 @SpringBootApplication(exclude= {SecurityAutoConfiguration.class })
 @MapperScan("com.cdtu.MyComment.dao")
+
 public class MyCommentApplication {
 
     public static void main(String[] args) {

@@ -3,12 +3,14 @@ package com.cdtu.myComment.service.impl;
 import com.cdtu.myComment.entity.User;
 import com.cdtu.myComment.dao.UserDao;
 import com.cdtu.myComment.service.UserService;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /**
  * (User)表服务实现类
@@ -20,7 +22,10 @@ import javax.annotation.Resource;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
-
+    @Resource
+    private HttpSession session;
+    @Resource
+    private User user;
     /**
      * 通过ID查询单条数据
      *
@@ -78,5 +83,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean deleteById(Integer id) {
         return this.userDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public boolean login() {
+
+        session.setAttribute("user",user);
+        return false;
     }
 }

@@ -53,4 +53,6 @@ public interface UserService {
      */
     boolean deleteById(Integer id);
 
+    boolean login();
+
 }
