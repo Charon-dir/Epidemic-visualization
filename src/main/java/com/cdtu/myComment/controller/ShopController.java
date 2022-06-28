@@ -1,5 +1,7 @@
 package com.cdtu.myComment.controller;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import com.cdtu.myComment.entity.Shop;
 import com.cdtu.myComment.service.ShopService;
 import org.springframework.data.domain.Page;
@@ -37,7 +39,7 @@ public class ShopController {
         return ResponseEntity.ok(this.shopService.queryByPage(shop, pageRequest));
     }
     @GetMapping("/getAll")
-    public List<Shop> getAll(){
+    public JSONObject getAll(){
         return this.shopService.getAll();
     }
     /**

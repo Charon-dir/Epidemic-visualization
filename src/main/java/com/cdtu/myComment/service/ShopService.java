@@ -1,5 +1,7 @@
 package com.cdtu.myComment.service;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
 import com.cdtu.myComment.entity.Shop;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -56,6 +58,6 @@ public interface ShopService {
      */
     boolean deleteById(Integer id);
 
-    List<Shop> getAll();
+    JSONObject getAll();
 
 }

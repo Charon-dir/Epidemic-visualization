@@ -1,5 +1,9 @@
 package com.cdtu.myComment.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.cdtu.myComment.entity.Shop;
 import com.cdtu.myComment.dao.ShopDao;
 import com.cdtu.myComment.service.ShopService;
@@ -10,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -83,8 +88,27 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public List<Shop> getAll() {
+    public JSONObject getAll() {
         List<Shop> all = this.shopDao.getAll();
-        return all;
+        HashSet<String> set = new HashSet<>();
+        for (Shop s:
+             all) {
+            set.add(s.getTypedId());
+        }
+
+        JSONObject json = new JSONObject();
+        for (String s:
+             set) {
+            JSONArray array = new JSONArray();
+            for (Shop shop:
+                    all) {
+                if(shop.getTypedId().equals(s)){
+                    JSONObject jsonObject = JSONUtil.parseObj(JSONUtil.toJsonStr(shop));
+                    array.add(jsonObject);
+                }
+            }
+            json.set(s,array);
+        }
+        return json;
     }
 }

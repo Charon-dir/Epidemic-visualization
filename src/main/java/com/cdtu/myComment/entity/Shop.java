@@ -127,5 +127,20 @@ public class Shop implements Serializable {
         this.img = img;
     }
 
+    @Override
+    public String toString() {
+        return "Shop{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", typedId='" + typedId + '\'' +
+                ", address='" + address + '\'' +
+                ", sold='" + sold + '\'' +
+                ", openHours='" + openHours + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", introduction='" + introduction + '\'' +
+                ", img='" + img + '\'' +
+                '}';
+    }
 }
 

@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
 </head>
 <body>
-hello
+<div id="container">
+
+</div>
+<script>
+    // var u = document.createElement("ul");
+    // u.innerHTML = 1233
+    // document.getElementById("container").appendChild(u);
+    $.ajax({
+        url:"http://localhost:8080/shop/getAll",
+        method:"get",
+        success:function(result){
+            for(let k in result){
+                var u = document.createElement("div");
+                u.innerHTML = result[k].name
+                document.getElementById("container").appendChild(u);
+            }
+        }
+    });
+</script>
 </body>
 </html>
