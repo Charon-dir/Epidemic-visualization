@@ -111,4 +111,10 @@ public class ShopServiceImpl implements ShopService {
         }
         return json;
     }
+
+    @Override
+    public List<Shop> getAllList() {
+        List<Shop> all = this.shopDao.getAll();
+        return all;
+    }
 }

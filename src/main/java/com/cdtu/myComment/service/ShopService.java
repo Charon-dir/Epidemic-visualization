@@ -60,4 +60,6 @@ public interface ShopService {
 
     JSONObject getAll();
 
+    List<Shop> getAllList();
+
 }
