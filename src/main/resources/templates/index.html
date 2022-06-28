@@ -17,9 +17,17 @@
         url:"http://localhost:8080/shop/getAll",
         method:"get",
         success:function(result){
-            for(let k in result){
+            for(let type in result){
                 var u = document.createElement("div");
-                u.innerHTML = result[k].name
+                // console.log(result[type]);
+                for (let k in result[type]){
+                    var image = document.createElement("img");
+                    image.src = result[type][k]["img"];
+                    var span = document.createElement("span");
+                    span.innerHTML = result[type][k]["name"]
+                    u.appendChild(image);
+                    u.appendChild(span);
+                }
                 document.getElementById("container").appendChild(u);
             }
         }
