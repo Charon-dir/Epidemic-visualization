@@ -14,6 +14,8 @@ public class MyCommentApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MyCommentApplication.class, args);
+
     }
+
 
 }

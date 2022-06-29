@@ -122,7 +122,7 @@ MAIN
                     <img height="96" width="170" th:src="${shop.getImg()}">
                     <div class="pl-3">
                         <h2 class="mb-2 h6 font-weight-bold">
-                            <a class="text-dark" href="https://mundana.bootmb.com/article.html" th:text="${shop.getName()}"></a>
+                            <a class="text-dark" th:href="${'theShop?id='+shop.getId()}" th:text="${shop.getName()}"></a>
                         </h2>
                         <div class="card-text text-muted small" th:text="${shop.getIntroduction()}">
 
