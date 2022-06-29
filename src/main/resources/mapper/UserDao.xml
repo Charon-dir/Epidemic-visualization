@@ -11,6 +11,11 @@
         <result property="shopid" column="shopid" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="login" resultType="java.lang.Boolean" parameterType="java.lang.String">
+        select count(*) from user
+        where username = #{username} and password = #{password}
+    </select>
+
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
         select id,

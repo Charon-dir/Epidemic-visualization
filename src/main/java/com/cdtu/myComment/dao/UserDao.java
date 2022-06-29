@@ -80,5 +80,6 @@ public interface UserDao {
      */
     int deleteById(Integer id);
 
+    boolean login(String username,String password);
 }
 

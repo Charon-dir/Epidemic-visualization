@@ -4,10 +4,16 @@ import com.cdtu.myComment.entity.User;
 import com.cdtu.myComment.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * (User)表控制层
@@ -23,6 +29,26 @@ public class UserController {
      */
     @Resource
     private UserService userService;
+
+    @RequestMapping("/login")
+    public Map login(HttpServletRequest request, HttpServletResponse response){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        boolean login = userService.login(username,password);
+        HashMap<String, Object> userMap = new HashMap<>();
+        if (login){
+            userMap.put("message","登录成功");
+            userMap.put("code","200");
+            Cookie cookie = new Cookie(username.trim(), password.trim());
+            cookie.setMaxAge(60*60*24);
+            cookie.setPath("/");
+            return userMap;
+        }else{
+            userMap.put("message","登录失败");
+            userMap.put("code","400");
+            return userMap;
+        }
+    }
 
     /**
      * 分页查询

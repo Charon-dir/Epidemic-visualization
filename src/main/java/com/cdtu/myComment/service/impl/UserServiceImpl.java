@@ -91,4 +91,9 @@ public class UserServiceImpl implements UserService {
 //        session.setAttribute("user",user);
         return false;
     }
+
+    @Override
+    public boolean login(String username, String password) {
+        return this.userDao.login(username,password);
+    }
 }

@@ -55,4 +55,6 @@ public interface UserService {
 
     boolean login();
 
+    boolean login(String username,String password);
+
 }
