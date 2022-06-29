@@ -57,4 +57,7 @@ public interface UserService {
 
     boolean login(String username,String password);
 
+    Boolean sign(User user);
+
+    Boolean queryByUsername(String username);
 }

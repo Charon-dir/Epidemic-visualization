@@ -11,10 +11,18 @@
         <result property="shopid" column="shopid" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="isSign" resultType="java.lang.Boolean"  parameterType="java.lang.String">
+        select count(*) from user
+        where username = #{username}
+    </select>
     <select id="login" resultType="java.lang.Boolean" parameterType="java.lang.String">
         select count(*) from user
         where username = #{username} and password = #{password}
     </select>
+
+<insert id="sign"  parameterType="com.cdtu.myComment.entity.User">
+    insert into user(username,password,userType) VALUES(#{username},#{password},#{usertype})
+</insert>
 
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">

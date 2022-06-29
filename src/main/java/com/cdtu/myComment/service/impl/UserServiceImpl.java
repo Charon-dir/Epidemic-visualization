@@ -97,4 +97,14 @@ public class UserServiceImpl implements UserService {
 
         return this.userDao.login(username,password);
     }
+
+    @Override
+    public Boolean sign(User user) {
+        return userDao.sign(user);
+    }
+
+    @Override
+    public Boolean queryByUsername(String username) {
+        return userDao.isSign(username);
+    }
 }

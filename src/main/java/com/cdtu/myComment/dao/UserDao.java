@@ -81,5 +81,9 @@ public interface UserDao {
     int deleteById(Integer id);
 
     boolean login(String username,String password);
+
+    Boolean sign(User user);
+
+    Boolean isSign(String username);
 }
 

@@ -40,9 +40,11 @@ public class UserController {
         if (login){
             userMap.put("message","登录成功");
             userMap.put("code","200");
+            userMap.put("url","index");
             Cookie cookie = new Cookie(username.trim(), password.trim());
             cookie.setMaxAge(60*60*24);
             cookie.setPath("/");
+            userMap.put("cookie",cookie);
             return userMap;
         }else{
             userMap.put("message","登录失败");
@@ -51,6 +53,37 @@ public class UserController {
         }
     }
 
+    @PostMapping("/sign")
+    public Map  sign(HttpServletRequest request){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        User user=new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setUsertype("1");
+        Boolean isSign =  userService.queryByUsername(username);
+        HashMap<String, Object> signMap = new HashMap<>();
+
+//        判断用户名是否被注册
+        if (isSign){
+            signMap.put("code","400");
+            signMap.put("message","用户名已被注册");
+            return signMap;
+        }
+
+//        进行注册
+        Boolean signResult = userService.sign(user);
+        if (signResult){
+            signMap.put("code","200");
+            signMap.put("message","注册成功！");
+           return  signMap;
+        }else{
+            signMap.put("code","400");
+            signMap.put("message","注册失败");
+            return  signMap;
+        }
+
+    }
     /**
      * 分页查询
      *
