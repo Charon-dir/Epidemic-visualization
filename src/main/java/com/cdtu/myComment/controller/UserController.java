@@ -34,7 +34,7 @@ public class UserController {
     public Map login(HttpServletRequest request, HttpServletResponse response){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean login = userService.login(username,password);
+        boolean login = userService.login(username,password,response);
         HashMap<String, Object> userMap = new HashMap<>();
         System.out.println(username);
         if (login){

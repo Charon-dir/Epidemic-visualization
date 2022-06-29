@@ -4,6 +4,8 @@ import com.cdtu.myComment.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * (User)表服务接口
  *
@@ -55,7 +57,7 @@ public interface UserService {
 
     boolean login();
 
-    boolean login(String username,String password);
+    boolean login(String username, String password, HttpServletResponse response);
 
     Boolean sign(User user);
 

@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -93,10 +94,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password, HttpServletResponse response) {
         Boolean loginSussess = this.userDao.login(username,password);
         if (loginSussess){
-            
+            session.setAttribute("username",username);
         }
         return loginSussess;
     }
