@@ -1,7 +1,2 @@
-$.ajax({
-    type:"GET",
-    url:"shop/getAll",
-    success:function (result) {
-        console.log(result);
-    }
-})
+
+$("#shopShow").style.background="url(https://mundana.bootmb.com/assets/img/demo/1.jpg)";

@@ -1,5 +1,6 @@
 package com.cdtu.myComment.controller;
 
+import cn.hutool.json.JSONArray;
 import com.cdtu.myComment.entity.Shop;
 import com.cdtu.myComment.service.ShopService;
 import org.springframework.data.domain.Page;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Shop)表控制层
@@ -23,6 +25,11 @@ public class ShopController {
      */
     @Resource
     private ShopService shopService;
+
+    @PostMapping("/shopShow")
+    public List<Shop> shopShow(){
+        return shopService.getAll();
+    }
 
     /**
      * 分页查询

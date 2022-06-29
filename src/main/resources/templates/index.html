@@ -15,6 +15,11 @@
     <!-- Main CSS -->
     <link href="https://mundana.bootmb.com/assets/css/main.css" rel="stylesheet"/>
 </head>
+<style>
+    #shopShow{
+        height: 150px;
+    }
+</style>
 <body>
 <!--------------------------------------
 NAVBAR
@@ -95,17 +100,18 @@ MAIN
     <div class="row">
         <div class="col-lg-6">
             <div class="card border-0 mb-4 box-shadow h-xl-300">
-                <div style="background-image: url(https://mundana.bootmb.com/assets/img/demo/1.jpg); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>
+                <div id="shopShow">
+
+                </div>
                 <div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
                     <h2 class="h4 font-weight-bold">
-                        <a class="text-dark" href="./article.html">Brain Stimulation Relieves Depression Symptoms</a>
+                        <a class="text-dark" href="./article.html" id="name">Brain Stimulation Relieves Depression Symptoms</a>
                     </h2>
-                    <p class="card-text">
+                    <p class="card-text" id="introduction">
                         Researchers have found an effective target in the brain for electrical stimulation to improve mood in people suffering from depression.
                     </p>
                     <div>
-                        <small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
-                        <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                        <small class="text-muted" id="openHours">Dec 12 &middot; 5 min read</small>
                     </div>
                 </div>
             </div>
@@ -116,12 +122,12 @@ MAIN
                     <img height="96" width="170" th:src="${shop.getImg()}">
                     <div class="pl-3">
                         <h2 class="mb-2 h6 font-weight-bold">
-                            <a class="text-dark" href="https://mundana.bootmb.com/article.html" th:text="${shop.getName()}">Nasa's IceSat space laser makes height maps of Earth</a>
+                            <a class="text-dark" href="https://mundana.bootmb.com/article.html" th:text="${shop.getName()}"></a>
                         </h2>
                         <div class="card-text text-muted small" th:text="${shop.getIntroduction()}">
-                            Jake Bittle in LOVE/HATE
+
                         </div>
-                        <small class="text-muted" th:text="${shop.getOpenHours()}">Dec 12 &middot; 5 min read</small>
+                        <small class="text-muted" th:text="${shop.getOpenHours()}"></small>
                     </div>
                 </div>
             </div>
@@ -253,6 +259,35 @@ JAVASCRIPTS
 <script src="https://mundana.bootmb.com/assets/js/vendor/popper.min.js" type="text/javascript"></script>
 <script src="https://mundana.bootmb.com/assets/js/vendor/bootstrap.min.js" type="text/javascript"></script>
 <script src="https://mundana.bootmb.com/assets/js/functions.js" type="text/javascript"></script>
-<script src="js/index_main.js"></script>
+<script>
+    $.ajax({
+        type:"POST",
+        url:"shop/shopShow",
+        success:function (result) {
+            var a = 0;
+            document.getElementById("shopShow").style.background="url("+result[a]["img"]+") 0% 0% / cover";
+            document.getElementById("name").innerHTML = result[a]["name"];
+            document.getElementById("introduction").innerHTML = result[a]["introduction"];
+            document.getElementById("openHours").innerHTML = result[a]["openHours"];
+
+            window.setInterval(function() {
+                if(a<result.length-1){
+                    a++
+                }else{
+                    a = 0;
+                }
+                document.getElementById("shopShow").style.background="url("+result[a]["img"]+") 0% 0% / cover";
+                document.getElementById("name").innerHTML = result[a]["name"];
+                document.getElementById("introduction").innerHTML = result[a]["introduction"];
+                document.getElementById("openHours").innerHTML = result[a]["openHours"];
+            },5000)
+
+
+        }
+    })
+
+
+
+</script>
 </body>
 </html>
