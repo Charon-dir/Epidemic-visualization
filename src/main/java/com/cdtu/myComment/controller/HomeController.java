@@ -16,4 +16,13 @@ public class HomeController {
         model.addAttribute("shop",shopService.getAll());
         return "index";
     }
+     @RequestMapping("/login")
+    public  String logIndex(){
+        return  "login";
+     }
+
+    @RequestMapping("/sign")
+    public  String signIndex(){
+        return  "sign";
+    }
 }

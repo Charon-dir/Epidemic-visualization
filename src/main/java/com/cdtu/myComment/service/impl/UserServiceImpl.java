@@ -94,8 +94,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean login(String username, String password) {
-
-        return this.userDao.login(username,password);
+        Boolean loginSussess = this.userDao.login(username,password);
+        if (loginSussess){
+            
+        }
+        return loginSussess;
     }
 
     @Override
