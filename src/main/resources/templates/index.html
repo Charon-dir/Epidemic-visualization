@@ -113,15 +113,15 @@ MAIN
         <div class="col-lg-6">
             <div class="flex-md-row mb-4 box-shadow h-xl-300">
                 <div class="mb-3 d-flex align-items-center" th:each="shop:${shop}" th:if="${shopStat.index} lt 3">
-                    <img height="80" th:src="${shop.getImg()}">
+                    <img height="96" width="170" th:src="${shop.getImg()}">
                     <div class="pl-3">
                         <h2 class="mb-2 h6 font-weight-bold">
                             <a class="text-dark" href="https://mundana.bootmb.com/article.html" th:text="${shop.getName()}">Nasa's IceSat space laser makes height maps of Earth</a>
                         </h2>
-                        <div class="card-text text-muted small">
+                        <div class="card-text text-muted small" th:text="${shop.getIntroduction()}">
                             Jake Bittle in LOVE/HATE
                         </div>
-                        <small class="text-muted">Dec 12 &middot; 5 min read</small>
+                        <small class="text-muted" th:text="${shop.getOpenHours()}">Dec 12 &middot; 5 min read</small>
                     </div>
                 </div>
             </div>

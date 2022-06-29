@@ -1,19 +1,16 @@
 package com.cdtu.myComment.service;
 
-import cn.hutool.json.JSONArray;
-import cn.hutool.json.JSONObject;
 import com.cdtu.myComment.entity.Shop;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
  * (Shop)表服务接口
  *
  * @author makejava
- * @since 2022-06-27 21:38:46
+ * @since 2022-06-28 22:15:10
  */
 public interface ShopService {
 
@@ -58,8 +55,5 @@ public interface ShopService {
      */
     boolean deleteById(Integer id);
 
-    JSONObject getAll();
-
-    List<Shop> getAllList();
-
+    List<Shop> getAll();
 }

@@ -1,9 +1,5 @@
 package com.cdtu.myComment.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.json.JSONArray;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.cdtu.myComment.entity.Shop;
 import com.cdtu.myComment.dao.ShopDao;
 import com.cdtu.myComment.service.ShopService;
@@ -13,15 +9,13 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 
 /**
  * (Shop)表服务实现类
  *
  * @author makejava
- * @since 2022-06-27 21:38:46
+ * @since 2022-06-28 22:15:10
  */
 @Service("shopService")
 public class ShopServiceImpl implements ShopService {
@@ -88,33 +82,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public JSONObject getAll() {
-        List<Shop> all = this.shopDao.getAll();
-        HashSet<String> set = new HashSet<>();
-        for (Shop s:
-             all) {
-            set.add(s.getTypedId());
-        }
-
-        JSONObject json = new JSONObject();
-        for (String s:
-             set) {
-            JSONArray array = new JSONArray();
-            for (Shop shop:
-                    all) {
-                if(shop.getTypedId().equals(s)){
-                    JSONObject jsonObject = JSONUtil.parseObj(JSONUtil.toJsonStr(shop));
-                    array.add(jsonObject);
-                }
-            }
-            json.set(s,array);
-        }
-        return json;
-    }
-
-    @Override
-    public List<Shop> getAllList() {
-        List<Shop> all = this.shopDao.getAll();
-        return all;
+    public List<Shop> getAll() {
+        return shopDao.getAll();
     }
 }

@@ -1,7 +1,5 @@
 package com.cdtu.myComment.controller;
 
-import cn.hutool.json.JSONArray;
-import cn.hutool.json.JSONObject;
 import com.cdtu.myComment.entity.Shop;
 import com.cdtu.myComment.service.ShopService;
 import org.springframework.data.domain.Page;
@@ -10,13 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * (Shop)表控制层
  *
  * @author makejava
- * @since 2022-06-27 21:38:45
+ * @since 2022-06-28 22:15:09
  */
 @RestController
 @RequestMapping("shop")
@@ -38,10 +35,7 @@ public class ShopController {
     public ResponseEntity<Page<Shop>> queryByPage(Shop shop, PageRequest pageRequest) {
         return ResponseEntity.ok(this.shopService.queryByPage(shop, pageRequest));
     }
-    @GetMapping("/getAll")
-    public JSONObject getAll(){
-        return this.shopService.getAll();
-    }
+
     /**
      * 通过主键查询单条数据
      *

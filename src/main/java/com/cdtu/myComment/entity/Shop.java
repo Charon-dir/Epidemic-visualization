@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (Shop)实体类
  *
  * @author makejava
- * @since 2022-06-27 21:38:45
+ * @since 2022-06-28 22:15:10
  */
 public class Shop implements Serializable {
-    private static final long serialVersionUID = 560197291859584441L;
+    private static final long serialVersionUID = 537215505666187776L;
 
     private Integer id;
     /**
@@ -42,9 +42,9 @@ public class Shop implements Serializable {
      */
     private Date updateTime;
 
-    private String introduction;
-
     private String img;
+
+    private String introduction;
 
 
     public Integer getId() {
@@ -111,14 +111,6 @@ public class Shop implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public String getintroduction() {
-        return introduction;
-    }
-
-    public void setintroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
     public String getImg() {
         return img;
     }
@@ -127,20 +119,13 @@ public class Shop implements Serializable {
         this.img = img;
     }
 
-    @Override
-    public String toString() {
-        return "Shop{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", typedId='" + typedId + '\'' +
-                ", address='" + address + '\'' +
-                ", sold='" + sold + '\'' +
-                ", openHours='" + openHours + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", introduction='" + introduction + '\'' +
-                ", img='" + img + '\'' +
-                '}';
+    public String getIntroduction() {
+        return introduction;
     }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
 }
 

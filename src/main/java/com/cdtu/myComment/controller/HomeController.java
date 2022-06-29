@@ -13,7 +13,7 @@ public class HomeController {
     private ShopService shopService;
     @RequestMapping("/index")
     public String index(Model model){
-        model.addAttribute("shop",shopService.getAllList());
+        model.addAttribute("shop",shopService.getAll());
         return "index";
     }
 }
