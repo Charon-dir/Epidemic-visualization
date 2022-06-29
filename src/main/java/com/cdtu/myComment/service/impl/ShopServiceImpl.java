@@ -91,4 +91,9 @@ public class ShopServiceImpl implements ShopService {
     public List<HashMap<String, Object>> getShopById(Integer id) {
         return shopDao.getShopById(id);
     }
+
+    @Override
+    public List<Shop> search(String name) {
+        return shopDao.search("name");
+    }
 }

@@ -92,5 +92,12 @@ public class ShopController {
         return ResponseEntity.ok(this.shopService.deleteById(id));
     }
 
+    @PostMapping("/search")
+    public  List<Shop> search(@RequestParam(name = "name") String name){
+        System.out.printf("----------------------"+name+"-------------------------");
+        return shopService.search("name");
+
+    }
+
 }
 
