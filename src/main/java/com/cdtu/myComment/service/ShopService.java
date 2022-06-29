@@ -4,6 +4,7 @@ import com.cdtu.myComment.entity.Shop;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -56,4 +57,6 @@ public interface ShopService {
     boolean deleteById(Integer id);
 
     List<Shop> getAll();
+
+    List<HashMap<String,Object>> getShopById(Integer id);
 }

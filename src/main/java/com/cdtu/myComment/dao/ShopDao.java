@@ -4,7 +4,9 @@ import com.cdtu.myComment.entity.Shop;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Shop)表数据库访问层
@@ -81,5 +83,7 @@ public interface ShopDao {
     int deleteById(Integer id);
 
     List<Shop> getAll();
+
+    List<HashMap<String,Object>> getShopById(Integer id);
 }
 

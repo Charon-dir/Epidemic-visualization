@@ -16,4 +16,8 @@ public class HomeController {
         model.addAttribute("shop",shopService.getAll());
         return "index";
     }
+    @RequestMapping("/shop")
+    public String Shop(){
+        return "shop";
+    }
 }

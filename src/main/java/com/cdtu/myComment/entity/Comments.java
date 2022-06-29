@@ -7,10 +7,10 @@ import java.io.Serializable;
  * (Comments)实体类
  *
  * @author makejava
- * @since 2022-06-27 20:52:53
+ * @since 2022-06-29 14:03:17
  */
 public class Comments implements Serializable {
-    private static final long serialVersionUID = -30369666111615080L;
+    private static final long serialVersionUID = -70740120851435690L;
     /**
      * 用户id
      */
@@ -19,16 +19,28 @@ public class Comments implements Serializable {
      * 商店id
      */
     private Integer shopid;
-
+    /**
+     * 用户评论
+     */
     private String usercomment;
-
+    /**
+     * 评分
+     */
     private String score;
-
+    /**
+     * 创建时间
+     */
     private Date createTime;
-
+    /**
+     * 更新时间
+     */
     private Date updateTime;
 
     private String reply;
+    /**
+     * 评论图片
+     */
+    private String img;
 
 
     public Integer getUserid() {
@@ -85,6 +97,14 @@ public class Comments implements Serializable {
 
     public void setReply(String reply) {
         this.reply = reply;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
 }

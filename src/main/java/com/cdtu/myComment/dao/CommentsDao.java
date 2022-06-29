@@ -5,12 +5,13 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Comments)表数据库访问层
  *
  * @author makejava
- * @since 2022-06-27 20:52:53
+ * @since 2022-06-29 14:03:17
  */
 public interface CommentsDao {
 

@@ -18,6 +18,11 @@
     <select id="getAll" resultMap="ShopMap">
         select * from shop
     </select>
+    <select id="getShopById" resultType="java.util.HashMap">
+        SELECT a.*,b.numOfComment FROM shop a
+        LEFT JOIN (SELECT COUNT(*) as numOfComment, shopid from comments GROUP BY shopid) b ON a.id = b.shopid
+        where a.id = #{id}
+    </select>
     <!--查询单个-->
     <select id="queryById" resultMap="ShopMap">
         select id,

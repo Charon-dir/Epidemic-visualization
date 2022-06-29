@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -84,5 +85,10 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public List<Shop> getAll() {
         return shopDao.getAll();
+    }
+
+    @Override
+    public List<HashMap<String, Object>> getShopById(Integer id) {
+        return shopDao.getShopById(id);
     }
 }

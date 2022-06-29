@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,6 +30,10 @@ public class ShopController {
     @PostMapping("/shopShow")
     public List<Shop> shopShow(){
         return shopService.getAll();
+    }
+    @PostMapping("/getShopAll")
+    public List<HashMap<String,Object>> getShopById(@RequestParam(name = "id") Integer id){
+        return shopService.getShopById(id);
     }
 
     /**
