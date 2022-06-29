@@ -3,9 +3,7 @@
   height: 500px;
   background-color: red;
   margin: 0 auto;
-  verticle-align:middle;
-
-
+  line-height:50%;
 }
 
 #login-box{
