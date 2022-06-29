@@ -81,5 +81,6 @@ public interface CommentsDao {
      */
     int deleteById(Integer userid);
 
+    List<Comments> getByShopId(Integer shopId);
 }
 

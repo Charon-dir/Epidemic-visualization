@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Comments)表服务实现类
@@ -78,5 +79,10 @@ public class CommentsServiceImpl implements CommentsService {
     @Override
     public boolean deleteById(Integer userid) {
         return this.commentsDao.deleteById(userid) > 0;
+    }
+
+    @Override
+    public List<Comments> getByShopId(Integer shopId) {
+        return commentsDao.getByShopId(shopId);
     }
 }

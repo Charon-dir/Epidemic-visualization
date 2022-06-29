@@ -27,7 +27,9 @@
         where userid = #{userid}
     </select>
 
-
+    <select id="getByShopId" resultMap="CommentsMap">
+        select  * from comments where shopid = #{shopId}
+    </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="CommentsMap">

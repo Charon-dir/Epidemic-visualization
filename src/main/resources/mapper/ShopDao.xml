@@ -19,9 +19,10 @@
         select * from shop
     </select>
     <select id="getShopById" resultType="java.util.HashMap">
-        SELECT a.*,b.numOfComment FROM shop a
-        LEFT JOIN (SELECT COUNT(*) as numOfComment, shopid from comments GROUP BY shopid) b ON a.id = b.shopid
+        SELECT a.*,b.numOfComment,b.score,b.avgScore FROM shop a
+        LEFT JOIN (SELECT COUNT(*) as numOfComment,round(AVG(score)) AS score,AVG(score) avgScore, shopid from comments GROUP BY shopid) b ON a.id = b.shopid
         where a.id = #{id}
+
     </select>
     <!--查询单个-->
     <select id="queryById" resultMap="ShopMap">

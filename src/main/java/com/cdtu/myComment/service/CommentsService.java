@@ -4,6 +4,8 @@ import com.cdtu.myComment.entity.Comments;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.util.List;
+
 /**
  * (Comments)表服务接口
  *
@@ -53,4 +55,5 @@ public interface CommentsService {
      */
     boolean deleteById(Integer userid);
 
+    List<Comments> getByShopId(Integer shopId);
 }

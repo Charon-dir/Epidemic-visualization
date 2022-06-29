@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (Comments)表控制层
@@ -34,6 +35,10 @@ public class CommentsController {
     @GetMapping
     public ResponseEntity<Page<Comments>> queryByPage(Comments comments, PageRequest pageRequest) {
         return ResponseEntity.ok(this.commentsService.queryByPage(comments, pageRequest));
+    }
+    @PostMapping("/getByShopId")
+    public List<Comments> getByShopId(@RequestParam(name = "shopId") Integer shopId){
+        return commentsService.getByShopId(shopId);
     }
 
     /**
