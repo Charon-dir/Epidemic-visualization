@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
@@ -27,7 +28,8 @@ import java.util.List;
 public class CommentsServiceImpl implements CommentsService {
     @Resource
     private CommentsDao commentsDao;
-
+    @Resource
+    private HttpServletRequest request;
 
     /**
      * 通过ID查询单条数据
@@ -94,10 +96,11 @@ public class CommentsServiceImpl implements CommentsService {
     }
 
     @Override
-    public HashMap<String, Object> upload(MultipartFile[] files, Integer shopId, HttpSession session){
+    public HashMap<String, Object> upload(MultipartFile[] files, Integer shopId){
+        HttpSession session = request.getSession();
         String username = "";
         HashMap<String, Object> map = new HashMap<>();
-        System.out.println(session.getAttribute("username"));
+
         if (session.getAttribute("username") != null){
             username = (String) session.getAttribute("username");
         }else{

@@ -62,5 +62,5 @@ public interface CommentsService {
     List<Comments> getByShopId(Integer shopId);
 
 
-    HashMap<String, Object> upload(MultipartFile[] files, Integer shopId, HttpSession session);
+    HashMap<String, Object> upload(MultipartFile[] files, Integer shopId);
 }

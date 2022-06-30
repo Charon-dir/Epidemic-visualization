@@ -2,7 +2,6 @@ package com.cdtu.myComment.controller;
 
 import com.cdtu.myComment.entity.Comments;
 import com.cdtu.myComment.service.CommentsService;
-import com.sun.deploy.net.HttpResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +29,6 @@ public class CommentsController {
      */
     @Resource
     private CommentsService commentsService;
-    @Resource
-    private HttpSession session;
     /**
      * 分页查询
      *
@@ -99,8 +95,12 @@ public class CommentsController {
             @RequestParam(name = "shopId") Integer shopId,
             HttpSession session
     ) throws IOException {
-        return commentsService.upload(files,shopId,session);
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("session",session.getAttribute("username"));
+        return map;
     }
+
+
 
 }
 

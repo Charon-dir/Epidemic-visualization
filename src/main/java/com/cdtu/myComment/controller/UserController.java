@@ -32,13 +32,14 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public Map login(HttpServletRequest request, HttpSession session){
+    public Map login(HttpServletRequest request,HttpSession session){
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
         boolean login = userService.login(username,password);
         HashMap<String, Object> userMap = new HashMap<>();
-        System.out.println(username);
+//        System.out.println(username);
         if (login){
             userMap.put("message","登录成功");
             userMap.put("code","200");

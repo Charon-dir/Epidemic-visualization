@@ -3,17 +3,17 @@ package com.cdtu.myComment;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 
 @SpringBootTest
 class MyCommentApplicationTests {
-
+@Resource
+HttpSession session;
     @Test
     void contextLoads() {
-        File folder = new File("d:\\test1\\test2");
-        if (!folder.exists() && !folder.isDirectory()) {
-            folder.mkdirs();
-        }
+        System.out.println(session.getAttribute("name"));
     }
 
 }
