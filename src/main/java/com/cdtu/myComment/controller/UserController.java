@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,10 +32,11 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/login")
-    public Map login(HttpServletRequest request, HttpServletResponse response){
+    public Map login(HttpServletRequest request, HttpSession session){
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean login = userService.login(username,password,response);
+        boolean login = userService.login(username,password);
         HashMap<String, Object> userMap = new HashMap<>();
         System.out.println(username);
         if (login){
@@ -45,6 +47,7 @@ public class UserController {
             cookie.setMaxAge(60*60*24);
             cookie.setPath("/");
             userMap.put("cookie",cookie);
+            session.setAttribute("username",username);
             return userMap;
         }else{
             userMap.put("message","登录失败");

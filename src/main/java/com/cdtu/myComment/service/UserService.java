@@ -57,7 +57,7 @@ public interface UserService {
 
     boolean login();
 
-    boolean login(String username, String password, HttpServletResponse response);
+    boolean login(String username, String password);
 
     Boolean sign(User user);
 

@@ -3,7 +3,11 @@ package com.cdtu.myComment.service;
 import com.cdtu.myComment.entity.Comments;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -56,4 +60,7 @@ public interface CommentsService {
     boolean deleteById(Integer userid);
 
     List<Comments> getByShopId(Integer shopId);
+
+
+    HashMap<String, Object> upload(MultipartFile[] files, Integer shopId, HttpSession session);
 }

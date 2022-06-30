@@ -7,8 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,6 +27,7 @@ import java.util.List;
 public class CommentsServiceImpl implements CommentsService {
     @Resource
     private CommentsDao commentsDao;
+
 
     /**
      * 通过ID查询单条数据
@@ -84,5 +91,44 @@ public class CommentsServiceImpl implements CommentsService {
     @Override
     public List<Comments> getByShopId(Integer shopId) {
         return commentsDao.getByShopId(shopId);
+    }
+
+    @Override
+    public HashMap<String, Object> upload(MultipartFile[] files, Integer shopId, HttpSession session){
+        String username = "";
+        HashMap<String, Object> map = new HashMap<>();
+        System.out.println(session.getAttribute("username"));
+        if (session.getAttribute("username") != null){
+            username = (String) session.getAttribute("username");
+        }else{
+            map.put("error","用户未登录");
+            return map;
+        }
+        String realPath = "src\\main\\resources\\static\\img\\user\\"+username+"\\"+shopId;
+        File folder = new File(realPath);
+        if (!folder.exists() && !folder.isDirectory()) {
+            folder.mkdirs();
+        }
+        if (files != null && files.length > 0){
+            for (int i =0;i <files.length;i++){
+                MultipartFile file = files[i];
+                if (!file.isEmpty()){
+                    int a = i;
+                    File newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
+                    while (newFile.exists()){
+                        a++;
+                        newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
+                    }
+                    try {
+                        file.transferTo(newFile);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+
+        map.put("code","200");
+        return map;
     }
 }

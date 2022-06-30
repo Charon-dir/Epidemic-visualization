@@ -95,7 +95,7 @@ public class ShopController {
     @PostMapping("/search")
     public  List<Shop> search(@RequestParam(name = "name") String name){
         System.out.printf("----------------------"+name+"-------------------------");
-        return shopService.search("name");
+        return shopService.search(name);
 
     }
 
