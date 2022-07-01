@@ -62,4 +62,5 @@ public interface UserService {
     Boolean sign(User user);
 
     Boolean queryByUsername(String username);
+
 }

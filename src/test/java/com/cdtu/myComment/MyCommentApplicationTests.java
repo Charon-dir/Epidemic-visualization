@@ -1,5 +1,6 @@
 package com.cdtu.myComment;
 
+import com.cdtu.myComment.dao.UserDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -10,10 +11,10 @@ import java.io.File;
 @SpringBootTest
 class MyCommentApplicationTests {
 @Resource
-HttpSession session;
+    UserDao userDao;
     @Test
     void contextLoads() {
-        System.out.println(session.getAttribute("name"));
+        System.out.println(userDao.getByUsername("xueqiang"));
     }
 
 }

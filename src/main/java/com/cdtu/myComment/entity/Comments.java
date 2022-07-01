@@ -1,5 +1,7 @@
 package com.cdtu.myComment.entity;
 
+import org.springframework.context.annotation.Bean;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2022-06-29 14:03:17
  */
+
 public class Comments implements Serializable {
     private static final long serialVersionUID = -70740120851435690L;
     /**
@@ -107,5 +110,18 @@ public class Comments implements Serializable {
         this.img = img;
     }
 
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "userid=" + userid +
+                ", shopid=" + shopid +
+                ", usercomment='" + usercomment + '\'' +
+                ", score='" + score + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", reply='" + reply + '\'' +
+                ", img='" + img + '\'' +
+                '}';
+    }
 }
 

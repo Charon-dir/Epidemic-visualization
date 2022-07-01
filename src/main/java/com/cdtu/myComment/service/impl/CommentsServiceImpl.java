@@ -1,8 +1,10 @@
 package com.cdtu.myComment.service.impl;
 
+import com.cdtu.myComment.dao.UserDao;
 import com.cdtu.myComment.entity.Comments;
 import com.cdtu.myComment.dao.CommentsDao;
 import com.cdtu.myComment.service.CommentsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +33,10 @@ public class CommentsServiceImpl implements CommentsService {
     private CommentsDao commentsDao;
     @Resource
     private HttpServletRequest request;
-
+//    @Resource
+//    private Comments comments;
+    @Resource
+    private UserDao userDao;
     /**
      * 通过ID查询单条数据
      *
@@ -100,7 +106,6 @@ public class CommentsServiceImpl implements CommentsService {
         HttpSession session = request.getSession();
         String username = "";
         HashMap<String, Object> map = new HashMap<>();
-
         if (session.getAttribute("username") != null){
             username = (String) session.getAttribute("username");
         }else{
@@ -132,6 +137,59 @@ public class CommentsServiceImpl implements CommentsService {
         }
 
         map.put("code","200");
+        return map;
+    }
+
+    @Override
+    public HashMap<String, Object> publish(MultipartFile[] files, String content, String score, String shopId) {
+        HttpSession session = request.getSession();
+        String username = "";
+        HashMap<String, Object> map = new HashMap<>();
+        if (session.getAttribute("username") != null){
+            username = (String) session.getAttribute("username");
+        }else{
+            map.put("error","用户未登录");
+            return map;
+        }
+        String realPath = "src\\main\\resources\\static\\img\\user\\"+username+"\\"+shopId;
+        File folder = new File(realPath);
+        if (!folder.exists() && !folder.isDirectory()) {
+            folder.mkdirs();
+        }
+        ArrayList<String> img = new ArrayList<>();
+
+        if (files != null && files.length > 0){
+
+            for (int i =0;i <files.length;i++){
+                MultipartFile file = files[i];
+                if (!file.isEmpty()){
+                    int a = i;
+                    File newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
+                    while (newFile.exists()){
+                        a++;
+                        newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
+                    }
+                    try {
+                        String path = newFile.getPath();
+                        img.add(path);
+                        file.transferTo(newFile);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }
+        Comments comments = new Comments();
+        comments.setUserid(userDao.getByUsername(username));
+        comments.setShopid(Integer.valueOf(shopId));
+        comments.setImg(String.valueOf(img));
+        comments.setScore(score);
+        comments.setUsercomment(content);
+        System.out.println(comments);
+        int insert = commentsDao.insert(comments);
+        if (insert>=1){
+            map.put("code",200);
+        }
         return map;
     }
 }

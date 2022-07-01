@@ -13,6 +13,8 @@
         <result property="img" column="img" jdbcType="VARCHAR"/>
     </resultMap>
 
+
+
     <!--查询单个-->
     <select id="queryById" resultMap="CommentsMap">
         select userid,
@@ -99,8 +101,8 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="userid" useGeneratedKeys="true">
-        insert into comments(shopid, userComment, score, create_time, update_time, reply, img)
-        values (#{shopid}, #{usercomment}, #{score}, #{createTime}, #{updateTime}, #{reply}, #{img})
+        insert into comments(userid,shopid, userComment, score, create_time, update_time, reply, img)
+        values (#{userid},#{shopid}, #{usercomment}, #{score}, #{createTime}, #{updateTime}, #{reply}, #{img})
     </insert>
 
     <insert id="insertBatch" keyProperty="userid" useGeneratedKeys="true">
