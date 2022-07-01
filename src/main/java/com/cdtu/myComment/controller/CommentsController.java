@@ -27,6 +27,7 @@ public class CommentsController {
     /**
      * 服务对象
      */
+
     @Resource
     private CommentsService commentsService;
     /**
@@ -93,14 +94,11 @@ public class CommentsController {
     public HashMap<String,Object> files(
             @RequestParam(name = "file") MultipartFile[] files,
             @RequestParam(name = "shopId") Integer shopId,
-            HttpSession session
+            HttpServletRequest request
     ) throws IOException {
-        HashMap<String,Object> map = new HashMap<>();
-        map.put("session",session.getAttribute("username"));
-        return map;
+        System.out.println((String)request.getSession().getAttribute("username"));
+        return commentsService.upload(files,shopId);
     }
-
-
 
 }
 
