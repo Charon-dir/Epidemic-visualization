@@ -14,7 +14,7 @@
         <result property="img" column="img" jdbcType="VARCHAR"/>
         <result property="introduction" column="introduction" jdbcType="VARCHAR"/>
     </resultMap>
-
+    <!--通过shop name查询-->
     <select id="search" resultMap="ShopMap">
         select * from shop where name = #{name}
     </select>

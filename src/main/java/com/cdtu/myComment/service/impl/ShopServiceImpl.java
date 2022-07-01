@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Shop)表服务实现类

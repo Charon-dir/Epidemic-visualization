@@ -72,9 +72,6 @@
   // var t = document.getElementById('hiderType');//选取id为test的div元素/
 
   // t.style.display = 'none';// 隐藏选择的元素
-
-
-
   function login() {
     $.ajax({
       type: "POST",
@@ -86,14 +83,13 @@
         // const url = "localhost:8080/"+res.url;
         // window.location = url;
         if (res.code == "200"){
+
           window.location.href="index";
           window.event.returnValue=false;
           document.cookie = res.cookie;
         }else{
           alert("用户名或密码错误！")
         }
-
-
       }
     })
   }

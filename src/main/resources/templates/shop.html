@@ -83,6 +83,7 @@
             $("#openHours").append("营业时间："+result[0]["open_hours"])
         }
     })
+
     $.ajax({
         type:"GET",
         url:"http://localhost:8080/comments/"+getParameter("id"),

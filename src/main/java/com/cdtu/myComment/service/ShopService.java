@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * (Shop)表服务接口
