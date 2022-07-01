@@ -21,7 +21,7 @@ public class HomeController {
         }else{
             model.addAttribute("islogin",false);
         }
-
+        System.out.println("----------------controller启动-------------------");
         return "index";
     }
     @RequestMapping("/theShop")

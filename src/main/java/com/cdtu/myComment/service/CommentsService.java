@@ -62,7 +62,7 @@ public interface CommentsService {
     List<Comments> getByShopId(Integer shopId);
 
 
-    HashMap<String, Object> upload(MultipartFile[] files, Integer shopId);
+//    HashMap<String, Object> upload(MultipartFile[] files, Integer shopId);
 
     HashMap<String,Object> publish(MultipartFile[] files, String content, String score, String shopId);
 

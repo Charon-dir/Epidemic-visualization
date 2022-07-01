@@ -101,44 +101,44 @@ public class CommentsServiceImpl implements CommentsService {
         return commentsDao.getByShopId(shopId);
     }
 
-    @Override
-    public HashMap<String, Object> upload(MultipartFile[] files, Integer shopId){
-        HttpSession session = request.getSession();
-        String username = "";
-        HashMap<String, Object> map = new HashMap<>();
-        if (session.getAttribute("username") != null){
-            username = (String) session.getAttribute("username");
-        }else{
-            map.put("error","用户未登录");
-            return map;
-        }
-        String realPath = "src\\main\\resources\\static\\img\\user\\"+username+"\\"+shopId;
-        File folder = new File(realPath);
-        if (!folder.exists() && !folder.isDirectory()) {
-            folder.mkdirs();
-        }
-        if (files != null && files.length > 0){
-            for (int i =0;i <files.length;i++){
-                MultipartFile file = files[i];
-                if (!file.isEmpty()){
-                    int a = i;
-                    File newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
-                    while (newFile.exists()){
-                        a++;
-                        newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
-                    }
-                    try {
-                        file.transferTo(newFile);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-        }
-
-        map.put("code","200");
-        return map;
-    }
+//    @Override
+//    public HashMap<String, Object> upload(MultipartFile[] files, Integer shopId){
+//        HttpSession session = request.getSession();
+//        String username = "";
+//        HashMap<String, Object> map = new HashMap<>();
+//        if (session.getAttribute("username") != null){
+//            username = (String) session.getAttribute("username");
+//        }else{
+//            map.put("error","用户未登录");
+//            return map;
+//        }
+//        String realPath = "src\\main\\resources\\static\\img\\user\\"+username+"\\"+shopId;
+//        File folder = new File(realPath);
+//        if (!folder.exists() && !folder.isDirectory()) {
+//            folder.mkdirs();
+//        }
+//        if (files != null && files.length > 0){
+//            for (int i =0;i <files.length;i++){
+//                MultipartFile file = files[i];
+//                if (!file.isEmpty()){
+//                    int a = i;
+//                    File newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
+//                    while (newFile.exists()){
+//                        a++;
+//                        newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
+//                    }
+//                    try {
+//                        file.transferTo(newFile);
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                }
+//            }
+//        }
+//
+//        map.put("code","200");
+//        return map;
+//    }
 
     @Override
     public HashMap<String, Object> publish(MultipartFile[] files, String content, String score, String shopId) {

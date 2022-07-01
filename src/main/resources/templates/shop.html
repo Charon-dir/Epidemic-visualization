@@ -93,12 +93,12 @@
                 img = img.split(",")
                 let image = "";
                 for (let j = 0; j < img.length; j++) {
-                    var index = img[j].split("\\")
-                    var imgsrc = "";
-                    for (let k = 5; k > 0; k--) {
-                        imgsrc += "/"+index[index.length-k]
-                    }
-                    image +='<img src="'+imgsrc+'" style="height: 100px;width: 100px;margin-right: 10px">'
+                    // var index = img[j].split("\\")
+                    // var imgsrc = "";
+                    // for (let k = 5; k > 0; k--) {
+                    //     imgsrc += "/"+index[index.length-k]
+                    // }
+                    image +='<img src="'+img[j]+'" style="height: 100px;width: 100px;margin-right: 10px">'
                 }
                 console.log(result[i])
                 $("#rp").after(`
@@ -111,8 +111,6 @@
                     </div>
                 `)
             }
-
-
         }
     })
     function inputFile() {
