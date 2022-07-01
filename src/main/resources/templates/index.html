@@ -52,7 +52,9 @@ NAVBAR
             </ul>
             <ul class="navbar-nav ml-auto d-flex align-items-center">
                 <li class="nav-item highlight">
-                    <a class="nav-link" href="/login">Get this Theme</a>
+                    <a th:if="${not islogin}" class="nav-link" href="/login">登录</a>
+                    <span th:if="${islogin}" th:text="${username}"></span>
+                    <button class="button" onclick="logout()" th:if="${islogin}">登出</button>
                 </li>
             </ul>
         </div>
@@ -182,6 +184,15 @@ JAVASCRIPTS
     })
     function search() {
         window.location.href="search?name="+decodeURI($("#search").val());
+    }
+    function logout(){
+        $.ajax({
+            url:"user/logout",
+            method:"GET",
+            success:function (){
+                location.reload();
+            }
+        })
     }
 </script>
 </body>

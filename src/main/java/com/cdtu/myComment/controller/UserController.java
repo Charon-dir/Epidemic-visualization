@@ -144,5 +144,12 @@ public class UserController {
         return ResponseEntity.ok(this.userService.deleteById(id));
     }
 
+    @GetMapping("/logout")
+    public HashMap<String,Object> logout(HttpServletRequest request){
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("code",200);
+        request.getSession().invalidate();
+        return map;
+    }
 }
 

@@ -6,14 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController {
     @Resource
     private ShopService shopService;
     @RequestMapping("/index")
-    public String index(Model model){
+    public String index(Model model, HttpServletRequest request){
         model.addAttribute("shop",shopService.getAll());
+        model.addAttribute("username",request.getSession().getAttribute("username"));
+        if (request.getSession().getAttribute("username") != null){
+            model.addAttribute("islogin",true);
+        }else{
+            model.addAttribute("islogin",false);
+        }
+
         return "index";
     }
     @RequestMapping("/theShop")
