@@ -30,4 +30,10 @@ public class HomeController {
     public  String signIndex(){
         return  "sign";
     }
+
+    @RequestMapping("/search")
+    public String search(){
+
+        return "search";
+    }
 }

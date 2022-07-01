@@ -277,20 +277,7 @@ JAVASCRIPTS
         }
     })
     function search() {
-        $.ajax({
-            type:"POST",
-            url:"shop/search",
-            data: {name:$("#search").val()},
-            success:function(response){
-                sessionStorage.setItem("id",response[0].id)
-                console.log(response[0].id)
-                console.log(response);
-                window.location.href="search?id="+response[0].id;
-            },
-            error:function(){
-                console.log(123);
-            }
-        })
+        window.location.href="search?name="+decodeURI($("#search").val());
     }
 </script>
 </body>
