@@ -15,6 +15,12 @@
         <result property="introduction" column="introduction" jdbcType="VARCHAR"/>
     </resultMap>
     <!--通过shop name查询-->
+
+    <select id="classifySelect" resultMap="ShopMap">
+        select * from shop
+        where typed_id = #{id}
+    </select>
+
     <select id="search" resultMap="ShopMap">
         select * from shop where name like #{name}
     </select>

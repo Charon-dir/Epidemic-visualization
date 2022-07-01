@@ -62,4 +62,6 @@ public interface ShopService {
     List<HashMap<String,Object>> getShopById(Integer id);
 
     List<Shop> search(String name);
+
+    List<Shop>  classifySelect(String typeid);
 }

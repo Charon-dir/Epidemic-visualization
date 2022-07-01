@@ -88,5 +88,7 @@ public interface ShopDao {
 
 
     List<Shop> search(String name);
+
+    List<Shop>  classifySelect(String typeid);
 }
 

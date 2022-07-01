@@ -97,4 +97,9 @@ public class ShopServiceImpl implements ShopService {
     public List<Shop> search(String name) {
         return shopDao.search("%"+name+"%");
     }
+
+    @Override
+    public List<Shop> classifySelect(String typeid) {
+        return shopDao.classifySelect(typeid);
+    }
 }

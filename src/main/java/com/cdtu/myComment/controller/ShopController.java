@@ -93,11 +93,16 @@ public class ShopController {
     }
 
     @PostMapping("/search")
-    public  List<Shop> search(@RequestParam(name = "name") String name){
-        System.out.printf("----------------------"+name+"-------------------------");
+    public  List<Shop> search(@RequestParam(name = "name") String name) {
+        System.out.printf("----------------------" + name + "-------------------------");
         return shopService.search(name);
-
     }
+
+        @PostMapping("/classifySelect")
+        public  List<Shop>  classify(@RequestParam(name = "typeid") String typeid){
+            System.out.println(typeid);
+            return shopService.classifySelect(typeid);
+        }
 
 }
 

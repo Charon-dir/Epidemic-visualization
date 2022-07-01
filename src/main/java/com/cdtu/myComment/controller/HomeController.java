@@ -44,4 +44,9 @@ public class HomeController {
 
         return "search";
     }
+
+    @RequestMapping("/classify")
+    public  String classifyIndex(){
+        return  "classify";
+    }
 }

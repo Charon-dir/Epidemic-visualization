@@ -1,0 +1,28 @@
+.header #menu ul{
+    /*display: none;*/
+    list-style: none;
+    list-style-type: none;
+    visibility:hidden;
+}
+
+.header .menu{
+    padding-top: 12px;
+    padding-left: 14px;
+}
+
+.header .menu ul li{
+    margin-top: 0px;
+    text-align: center;
+}
+
+.header .menu .menu_title{
+    /*border-bottom:1px solid black ;*/
+    padding-bottom: 10px;
+    width: 80px;
+    text-align: center;
+}
+
+
+a{
+    text-decoration: none;
+}

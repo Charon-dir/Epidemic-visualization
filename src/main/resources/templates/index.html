@@ -14,10 +14,42 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <!-- Main CSS -->
     <link href="https://mundana.bootmb.com/assets/css/main.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/classify.css">
 </head>
 <style>
     #shopShow{
         height: 150px;
+    }
+    .header #menu ul{
+        /*display: none;*/
+        list-style: none;
+        visibility:hidden;
+        background-color: green;
+        opacity: 0.5;
+    }
+
+    .header .menu{
+        padding-top: 12px;
+        padding-left: 14px;
+    }
+
+    .header .menu ul li{
+        margin-top: 0px;
+        text-align: center;
+        margin:0 auto;
+        list-style: none;
+    }
+
+    .header .menu .menu_title{
+        /*border-bottom:1px solid black ;*/
+        padding-bottom: 10px;
+        width: 80px;
+        text-align: center;
+    }
+
+
+    a{
+        text-decoration: none;
     }
 </style>
 <body>
@@ -39,7 +71,19 @@ NAVBAR
                     <a class="nav-link" href="./article.html">Culture</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./docs.html">分类导航 <span class="badge badge-secondary">docs</span></a>
+                    <div class="header">
+                        <div class="menu" onmouseleave="hide_menu1()"  onmouseover="show_menu1()">
+                            <div class="menu_title">
+                                <a href="">菜品选择</a></div>
+                            <div style="position: absolute">
+                            <ul id="menu1" >
+                                <li><a href="search?typeid=1">川菜</a></li>
+                                <li><a href="search?typeid=2">粤菜</a></li>
+                                <li><a href="search?typeid=3">鲁菜</a></li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <ul>
@@ -194,6 +238,23 @@ JAVASCRIPTS
             }
         })
     }
+    document.getElementById("menu1").style.display = "none";
+    function show_menu1(){
+        // $("#menu1").style.display="block";
+        document.getElementById("menu1").style.display = "block";
+    }
+
+    function hide_menu1(){
+        // $("#menu1").style.display="none";
+        document.getElementById("menu1").style.display = "none";
+    }
+function colorchange(){
+    $("li").mouseenter(function() {
+        $(this).css("background-color","pink");
+        $(this).siblings().css("background-color","white");
+    });
+}
+
 </script>
 </body>
 </html>

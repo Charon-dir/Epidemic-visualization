@@ -23,6 +23,7 @@
     </style>
 </head>
 <body>
+<a href="index" style="list-style-type:none;list-style:none;text-decoration:none;">返回首页</a>
 <div class="box">
     <table class="table table-striped table-bordered table-hover table-condensed">
         <thead>
@@ -43,22 +44,24 @@
     </table>
 </div>
 <script>
-    $(document).ready(function () {
-        let key = getParameter("name");
-        let tableVale = $("#rch");
-        let temp = '';
-        let judge = '';
-        console.log(key);
-        $.ajax({
-            type: "POST",
-            url: "shop/search",
-            data: {name: key},
-            success: function (res) {
-                let restaurant = res;
-                // tableVale.empty();//清空
-                for (let j =0;j<restaurant.length;j++){
-                    console.log(restaurant[j])
-                    tableVale.empty();
+    const typeid = GetQueryString("typeid");
+    if (typeid){
+        $(document).ready(function () {
+            let key = getParameter("name");
+            let tableVale = $("#rch");
+            let temp = '';
+            let judge = '';
+            console.log(key);
+            $.ajax({
+                type: "POST",
+                url: "shop/classifySelect",
+                data: {typeid: typeid},
+                success: function (res) {
+                    let restaurant = res;
+                    // tableVale.empty();//清空
+                    for (let j =0;j<restaurant.length;j++){
+                        console.log(restaurant[j])
+                        tableVale.empty();
                         console.log(1);
                         if (restaurant[j].typedId=='1'){
                             judge = "川菜";
@@ -79,15 +82,68 @@
                             '<td><img style="width: 60px;height: 40px;" src = ' + restaurant[j].img+'></td>' +
                             '<td>' + restaurant[j].introduction+ '</td>' +
                             '</tr>';
-                    tableVale.append(temp);
+                        tableVale.append(temp);
+                    }
+                    // console.log(restaurant);
+                },
+                error: function () {
+                    console.log(123);
                 }
-               // console.log(restaurant);
-            },
-            error: function () {
-                console.log(123);
-            }
+            })
         })
-    })
+
+
+    }else{
+        $(document).ready(function () {
+            let key = getParameter("name");
+            let tableVale = $("#rch");
+            let temp = '';
+            let judge = '';
+            console.log(key);
+            $.ajax({
+                type: "POST",
+                url: "shop/search",
+                data: {name: key},
+                success: function (res) {
+                    let restaurant = res;
+                    // tableVale.empty();//清空
+                    for (let j =0;j<restaurant.length;j++){
+                        console.log(restaurant[j])
+                        tableVale.empty();
+                        console.log(1);
+                        if (restaurant[j].typedId=='1'){
+                            judge = "川菜";
+                        }else if (restaurant[j].typedId=='2'){
+                            judge = "粤菜";
+                        }else if (restaurant[j].typedId=='3'){
+                            judge = "鲁菜";
+                        }
+                        console.log(judge);
+                        temp +=
+                            '<tr>' +
+                            '<td>' + restaurant[j].id+ '</td>' +
+                            '<td><a href="http://localhost:8080/theShop?id='+restaurant[j].id+'">' + restaurant[j].name + '</a></td>' +
+                            '<td>' + judge+ '</td>' +
+                            '<td>' + restaurant[j].address + '</td>' +
+                            '<td>' + restaurant[j].sold + '</td>' +
+                            '<td>' + restaurant[j].openHours+ '</td>' +
+                            '<td><img style="width: 60px;height: 40px;" src = ' + restaurant[j].img+'></td>' +
+                            '<td>' + restaurant[j].introduction+ '</td>' +
+                            '</tr>';
+                        tableVale.append(temp);
+                    }
+                    // console.log(restaurant);
+                },
+                error: function () {
+                    console.log(123);
+                }
+            })
+        })
+    }
+
+
+
+
 function getParameter(parName) {
     var str=parName.toLowerCase()+"=";
     var gvalue="";
@@ -100,6 +156,13 @@ function getParameter(parName) {
     }
     return gvalue;
 }
+
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return unescape(r[2]); return null;
+    }
 </script>
 </body>
 </html>
