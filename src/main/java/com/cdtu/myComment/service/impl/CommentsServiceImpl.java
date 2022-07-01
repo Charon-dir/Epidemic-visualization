@@ -192,4 +192,9 @@ public class CommentsServiceImpl implements CommentsService {
         }
         return map;
     }
+
+    @Override
+    public List<Comments> show(String shopId) {
+        return commentsDao.getByShopId(Integer.valueOf(shopId));
+    }
 }

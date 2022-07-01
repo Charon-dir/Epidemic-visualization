@@ -41,7 +41,7 @@
 
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="rp">
         <div class="col">
             <div style="float: left">
                 <textarea cols="80" rows="10" style="resize: none" id="content"></textarea>
@@ -52,20 +52,6 @@
                 <input type="button" onclick="inputFile()"  value="点击发表评论">
             </div>
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div id="username">用户名</div>
-            <div id="reply">用户评论</div>
-            <div><img src="img/user/1/reply_img1.jpg" style="height: 100px;width: 100px"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div>用户名</div>
-            <div>用户评论</div>
-            <div><img src="img/user/1/reply_img1.jpg" style="height: 100px;width: 100px"></div>
         </div>
     </div>
 </div>
@@ -100,11 +86,38 @@
     })
 
     $.ajax({
-        type:"GET",
-        url:"http://localhost:8080/comments/"+getParameter("id"),
-        data:{id:getParameter("id")},
+        type:"POST",
+        url:"http://localhost:8080/comments/show",
+        data:{shopId:getParameter("id")},
         success:function (result){
-            console.log(result);
+            for (let i = 0; i < result.length; i++) {
+                let img = result[i]["img"];
+                img = img.substring(1);
+                img = img.substring(0,img.length - 1)
+                img = img.split(",")
+                let image = "";
+                for (let j = 0; j < img.length; j++) {
+                    var index = img[j].split("\\")
+                    var imgsrc = "";
+                    for (let k = 5; k > 0; k--) {
+                        imgsrc += "/"+index[index.length-k]
+                    }
+                    console.log(imgsrc)
+                    image +='<img src="'+imgsrc+'" style="height: 100px;width: 100px;margin-right: 10px">'
+                }
+                console.log(result[i])
+                $("#rp").after(`
+                    <div class="row">
+                        <div class="col">
+                            <div id="username">`+result[i]["userid"]+`</div>
+                            <div id="reply">`+result[i]["usercomment"]+`</div>
+                            <div>`+image+`</div>
+                        </div>
+                    </div>
+                `)
+            }
+
+
         }
     })
     function inputFile() {

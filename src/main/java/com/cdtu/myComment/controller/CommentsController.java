@@ -90,15 +90,6 @@ public class CommentsController {
         return ResponseEntity.ok(this.commentsService.deleteById(id));
     }
 
-//    @PostMapping("/files")
-//    public HashMap<String,Object> files(
-//            @RequestParam(name = "file") MultipartFile[] files,
-//            @RequestParam(name = "shopId") Integer shopId,
-//            HttpServletRequest request
-//    ) throws IOException {
-//        System.out.println((String)request.getSession().getAttribute("username"));
-//        return commentsService.upload(files,shopId);
-//    }
     @PostMapping("/publish")
     public HashMap<String,Object> publish(
             @RequestParam(name = "file") MultipartFile[] files,
@@ -109,6 +100,13 @@ public class CommentsController {
         commentsService.publish(files,content,score,shopId);
 
         return null;
+    }
+
+    @PostMapping("/show")
+    public List<Comments> show(
+            @RequestParam("shopId") String shopId
+    ){
+        return commentsService.show(shopId);
     }
 
 }

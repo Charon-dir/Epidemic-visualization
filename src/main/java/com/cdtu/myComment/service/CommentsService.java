@@ -65,4 +65,6 @@ public interface CommentsService {
     HashMap<String, Object> upload(MultipartFile[] files, Integer shopId);
 
     HashMap<String,Object> publish(MultipartFile[] files, String content, String score, String shopId);
+
+    List<Comments> show(String shopId);
 }
