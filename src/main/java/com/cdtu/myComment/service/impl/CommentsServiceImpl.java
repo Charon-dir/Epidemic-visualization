@@ -148,7 +148,7 @@ public class CommentsServiceImpl implements CommentsService {
         if (session.getAttribute("username") != null){
             username = (String) session.getAttribute("username");
         }else{
-            map.put("error","用户未登录");
+            map.put("code","201");
             return map;
         }
         String realPath = "src\\main\\resources\\static\\img\\user\\"+username+"\\"+shopId;

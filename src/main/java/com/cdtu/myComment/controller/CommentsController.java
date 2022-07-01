@@ -97,9 +97,9 @@ public class CommentsController {
             @RequestParam(name = "score") String score,
             @RequestParam(name = "shopId") String shopId
     ){
-        commentsService.publish(files,content,score,shopId);
+        HashMap<String, Object> publish = commentsService.publish(files, content, score, shopId);
 
-        return null;
+        return publish;
     }
 
     @PostMapping("/show")
