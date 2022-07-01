@@ -95,6 +95,6 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public List<Shop> search(String name) {
-        return shopDao.search(name);
+        return shopDao.search("%"+name+"%");
     }
 }

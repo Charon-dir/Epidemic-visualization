@@ -45,40 +45,43 @@
 <script>
     $(document).ready(function () {
         let key = getParameter("name");
-        let r = $("#rch");
+        let tableVale = $("#rch");
         let temp = '';
         let judge = '';
         console.log(key);
         $.ajax({
-
             type: "POST",
             url: "shop/search",
             data: {name: key},
-            success: function (response) {
-                let s = response;
-                r.empty();//清空
-                for (let i = 0; i < s.length; i++) {
-                    if (s[i].typedId=='1'){
-                        judge = "川菜";
-                    }else if (s[i].typedId=='2'){
-                        judge = "粤菜";
-                    }else if (s[i].typedId=='3'){
-                        judge = "鲁菜";
-                    }
-                    console.log(judge);
-                    temp +=
-                        '<tr>' +
-                        '<td>' + s[i].id+ '</td>' +
-                        '<td>' + s[i].name + '</td>' +
-                        '<td>' + judge+ '</td>' +
-                        '<td>' + s[i].address + '</td>' +
-                        '<td>' + s[i].sold + '</td>' +
-                        '<td>' + s[i].openHours+ '</td>' +
-                        '<td><img src = ' + s[i].img+'></td>' +
-                        '<td>' + s[i].introduction+ '</td>' +
-                        '</tr>';
+            success: function (res) {
+                let restaurant = res;
+                // tableVale.empty();//清空
+                for (let j =0;j<restaurant.length;j++){
+                    console.log(restaurant[j])
+                    tableVale.empty();
+                        console.log(1);
+                        if (restaurant[j].typedId=='1'){
+                            judge = "川菜";
+                        }else if (restaurant[j].typedId=='2'){
+                            judge = "粤菜";
+                        }else if (restaurant[j].typedId=='3'){
+                            judge = "鲁菜";
+                        }
+                        console.log(judge);
+                        temp +=
+                            '<tr>' +
+                            '<td>' + restaurant[j].id+ '</td>' +
+                            '<td>' + restaurant[j].name + '</td>' +
+                            '<td>' + judge+ '</td>' +
+                            '<td>' + restaurant[j].address + '</td>' +
+                            '<td>' + restaurant[j].sold + '</td>' +
+                            '<td>' + restaurant[j].openHours+ '</td>' +
+                            '<td><img style="width: 60px;height: 40px;" src = ' + restaurant[j].img+'></td>' +
+                            '<td>' + restaurant[j].introduction+ '</td>' +
+                            '</tr>';
+                    tableVale.append(temp);
                 }
-                r.append(temp);
+               // console.log(restaurant);
             },
             error: function () {
                 console.log(123);

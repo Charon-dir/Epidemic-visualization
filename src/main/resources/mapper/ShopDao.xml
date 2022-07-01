@@ -16,7 +16,7 @@
     </resultMap>
     <!--通过shop name查询-->
     <select id="search" resultMap="ShopMap">
-        select * from shop where name = #{name}
+        select * from shop where name like #{name}
     </select>
     <!--查询全部-->
     <select id="getAll" resultMap="ShopMap">
