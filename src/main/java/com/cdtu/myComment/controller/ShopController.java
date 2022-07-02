@@ -7,8 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,15 +61,16 @@ public class ShopController {
         return ResponseEntity.ok(this.shopService.queryById(id));
     }
 
-    /**
-     * 新增数据
-     *
-     * @param shop 实体
-     * @return 新增结果
-     */
+
     @PostMapping
-    public ResponseEntity<Shop> add(Shop shop) {
-        return ResponseEntity.ok(this.shopService.insert(shop));
+    public Shop add(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("name")  String name,
+            @RequestParam("typeId") String typeId,
+            @RequestParam("address") String address,
+            @RequestParam("introduction") String introduction
+            ) throws IOException {
+        return this.shopService.insert(file,name,typeId,address,introduction);
     }
 
     /**

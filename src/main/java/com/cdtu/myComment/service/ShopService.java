@@ -3,7 +3,9 @@ package com.cdtu.myComment.service;
 import com.cdtu.myComment.entity.Shop;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,10 +38,9 @@ public interface ShopService {
     /**
      * 新增数据
      *
-     * @param shop 实例对象
      * @return 实例对象
      */
-    Shop insert(Shop shop);
+    Shop insert(MultipartFile file, String name, String typeId, String address, String introduction) throws IOException;
 
     /**
      * 修改数据
@@ -64,4 +65,6 @@ public interface ShopService {
     List<Shop> search(String name);
 
     List<Shop>  classifySelect(String typeid);
+
+
 }

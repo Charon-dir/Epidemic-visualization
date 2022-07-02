@@ -11,6 +11,10 @@
         <result property="shopid" column="shopid" jdbcType="INTEGER"/>
     </resultMap>
 
+    <select id="getUser" resultMap="UserMap">
+        select * from user
+        where username = #{username} and password = #{password}
+    </select>
     <select id="getByUsername" resultType="java.lang.Integer">
         select * from user where username = #{username}
     </select>

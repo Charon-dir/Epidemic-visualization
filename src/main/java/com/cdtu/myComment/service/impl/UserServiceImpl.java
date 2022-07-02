@@ -23,7 +23,8 @@ import javax.servlet.http.HttpSession;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
-
+    @Resource
+    private HttpSession session;
 //    @Resource
 //    private User user;
     /**
@@ -95,10 +96,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean login(String username, String password) {
         Boolean loginSussess = this.userDao.login(username,password);
-//        if (loginSussess){
-//            session.setAttribute("username",username);
-//            System.out.println("-------------"+session.getAttribute("username"));
-//        }
+        User user = this.userDao.getUser(username, password);
+        if (loginSussess){
+            session.setAttribute("user",user);
+        }
         return loginSussess;
     }
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" 
+integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<script src="https://mundana.bootmb.com/assets/js/vendor/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" type="javascript"></script>
+</head>
+<body>
+
+        <div class="form-group">
+          <label for="name">商户名称:</label>
+          <input type="text" class="form-control" id="name" placeholder="商户名称">
+        </div>
+        <div class="form-group">
+          <label for="address">商户地址:</label>
+          <input type="text" class="form-control" id="address" placeholder="商户地址">
+        </div>
+        <div class="form-group">
+            <label for="type">商户类型:</label>
+            <input type="text" class="form-control" id="type" placeholder="商户类型">
+          </div>
+          <div class="form-group">
+            <label for="introduction">商户介绍:</label>
+            <input type="text" class="form-control" id="introduction" placeholder="商户介绍">
+          </div>
+        <div class="form-group">
+          
+          <input type="file" id="input-file">
+         
+        </div>
+       
+        <button type="submit" class="btn btn-default" onclick="ad()">Submit</button>
+
+        <script>
+            function ad(){
+                let formData = new FormData();
+                formData.append("name",$("#name").val());
+                formData.append("address",$("#address").val());
+                formData.append("typeId",$("#type").val());
+                formData.append("introduction",$("#introduction").val());
+                formData.append("file",$("#input-file")[0].files[0]);
+                $.ajax({
+                    url:"shop",
+                    method:"POST",
+                    data:formData,
+                    contentType:false,
+                    processData:false,
+                    success:function (result) {
+                        console.log(result);
+                    }
+                })
+            }
+        </script>
+</body>
+</html>

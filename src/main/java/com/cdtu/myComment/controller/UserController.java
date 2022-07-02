@@ -49,6 +49,7 @@ public class UserController {
             cookie.setPath("/");
             userMap.put("cookie",cookie);
             session.setAttribute("username",username);
+            System.out.println("user:"+session.getAttribute("user"));
             return userMap;
         }else{
             userMap.put("message","登录失败");

@@ -1,5 +1,6 @@
 package com.cdtu.myComment.controller;
 
+import com.cdtu.myComment.entity.User;
 import com.cdtu.myComment.service.ShopService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,8 +15,14 @@ public class HomeController {
     private ShopService shopService;
     @RequestMapping("/index")
     public String index(Model model, HttpServletRequest request){
+
         model.addAttribute("shop",shopService.getAll());
         model.addAttribute("username",request.getSession().getAttribute("username"));
+        if (request.getSession().getAttribute("user")!= null){
+            User user = (User) request.getSession().getAttribute("user");
+            model.addAttribute("usertype",user.getUsertype());
+        }
+
         if (request.getSession().getAttribute("username") != null){
             model.addAttribute("islogin",true);
         }else{
@@ -48,5 +55,10 @@ public class HomeController {
     @RequestMapping("/classify")
     public  String classifyIndex(){
         return  "classify";
+    }
+
+    @RequestMapping("/myshop")
+    public  String myshop(){
+        return  "myshop";
     }
 }

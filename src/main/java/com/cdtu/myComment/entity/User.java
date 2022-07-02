@@ -72,6 +72,18 @@ public class User implements Serializable {
         return shopid;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", usertype='" + usertype + '\'' +
+                ", shopid=" + shopid +
+                '}';
+    }
+
     public void setShopid(Integer shopid) {
         this.shopid = shopid;
     }

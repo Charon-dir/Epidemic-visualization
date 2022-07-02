@@ -29,7 +29,7 @@
         select * from shop
     </select>
     <select id="getShopById" resultType="java.util.HashMap">
-        SELECT a.*,b.numOfComment,b.score,b.avgScore FROM shop a
+        SELECT a.*,b.numOfComment,b.score,round(b.avgScore,2) as avgScore FROM shop a
         LEFT JOIN (SELECT COUNT(*) as numOfComment,round(AVG(score)) AS score,AVG(score) avgScore, shopid from comments GROUP BY shopid) b ON a.id = b.shopid
         where a.id = #{id}
 

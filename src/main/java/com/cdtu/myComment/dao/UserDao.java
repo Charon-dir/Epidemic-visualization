@@ -87,5 +87,7 @@ public interface UserDao {
     Boolean isSign(String username);
 
     Integer getByUsername(String username);
+
+    User getUser(String username,String password);
 }
 

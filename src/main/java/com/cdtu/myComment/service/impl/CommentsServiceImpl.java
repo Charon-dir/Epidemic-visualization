@@ -3,6 +3,7 @@ package com.cdtu.myComment.service.impl;
 import com.cdtu.myComment.dao.UserDao;
 import com.cdtu.myComment.entity.Comments;
 import com.cdtu.myComment.dao.CommentsDao;
+import com.cdtu.myComment.entity.User;
 import com.cdtu.myComment.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +13,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * (Comments)表服务实现类
@@ -141,12 +142,13 @@ public class CommentsServiceImpl implements CommentsService {
 //    }
 
     @Override
-    public HashMap<String, Object> publish(MultipartFile[] files, String content, String score, String shopId) {
+    public HashMap<String, Object> publish(MultipartFile[] files, String content, String score, String shopId,HttpServletRequest request) {
         HttpSession session = request.getSession();
         String username = "";
         HashMap<String, Object> map = new HashMap<>();
         if (session.getAttribute("username") != null){
-            username = (String) session.getAttribute("username");
+            User user = (User) session.getAttribute("user");
+            username = user.getId().toString();
         }else{
             map.put("code","201");
             return map;
@@ -170,9 +172,8 @@ public class CommentsServiceImpl implements CommentsService {
                         newFile = new File(realPath+"/reply"+a+".jpg").getAbsoluteFile();
                     }
                     try {
-                        String path = newFile.getPath();
-                        img.add(path);
-                        file.transferTo(newFile);
+                        String s = fileUpload(file, request, "/reply" + a + ".jpg", username, shopId,newFile);
+                        img.add(s);
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
@@ -190,11 +191,27 @@ public class CommentsServiceImpl implements CommentsService {
         if (insert>=1){
             map.put("code",200);
         }
+
         return map;
     }
 
     @Override
     public List<Comments> show(String shopId) {
         return commentsDao.getByShopId(Integer.valueOf(shopId));
+    }
+
+    public String fileUpload(MultipartFile file, HttpServletRequest request,String filename,String username,String shopId,File newFile) throws IOException {
+        String myurl = "img/user/"+username+"/"+shopId+"/";
+        String realPath = request.getServletContext().getRealPath("/")+myurl;
+        File folder = new File(realPath);
+        if(!folder.exists()){
+            folder.mkdirs();
+        }
+        File file1 = new File(folder, filename);
+        file.transferTo(file1);
+        BufferedImage read = ImageIO.read(file1);
+        ImageIO.write(read,"jpg",newFile);
+//        String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/"+myurl+filename;
+        return myurl+filename;
     }
 }

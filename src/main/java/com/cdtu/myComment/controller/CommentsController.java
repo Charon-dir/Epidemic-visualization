@@ -11,9 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * (Comments)表控制层
@@ -95,9 +98,10 @@ public class CommentsController {
             @RequestParam(name = "file") MultipartFile[] files,
             @RequestParam(name = "content") String content,
             @RequestParam(name = "score") String score,
-            @RequestParam(name = "shopId") String shopId
+            @RequestParam(name = "shopId") String shopId,
+            HttpServletRequest request
     ){
-        HashMap<String, Object> publish = commentsService.publish(files, content, score, shopId);
+        HashMap<String, Object> publish = commentsService.publish(files, content, score, shopId,request);
 
         return publish;
     }
@@ -107,6 +111,21 @@ public class CommentsController {
             @RequestParam("shopId") String shopId
     ){
         return commentsService.show(shopId);
+    }
+
+    @PostMapping("/upload")
+    public Map<String,Object> fileUpload(MultipartFile file,HttpServletRequest request) throws IOException {
+        Map<String,Object> result = new HashMap<>();
+        String realPath = request.getServletContext().getRealPath("/")+"img/user/";
+        File folder = new File(realPath);
+        if(!folder.exists()){
+            folder.mkdirs();
+        }
+        String newName = UUID.randomUUID().toString()+file.getOriginalFilename();
+        file.transferTo(new File(folder,newName));
+        String url = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/"+newName;
+        result.put("url",url);
+        return result;
     }
 
 }

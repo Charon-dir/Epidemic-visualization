@@ -87,20 +87,18 @@
         data:{shopId:getParameter("id")},
         success:function (result){
             for (let i = 0; i < result.length; i++) {
-                let img = result[i]["img"];
-                img = img.substring(1);
-                img = img.substring(0,img.length - 1)
-                img = img.split(",")
                 let image = "";
-                for (let j = 0; j < img.length; j++) {
-                    // var index = img[j].split("\\")
-                    // var imgsrc = "";
-                    // for (let k = 5; k > 0; k--) {
-                    //     imgsrc += "/"+index[index.length-k]
-                    // }
-                    image +='<img src="'+img[j]+'" style="height: 100px;width: 100px;margin-right: 10px">'
+                if (result[i]["img"]!=null){
+                    let img = result[i]["img"];
+                    img = img.substring(1);
+                    img = img.substring(0,img.length - 1)
+                    img = img.split(",")
+                    for (let j = 0; j < img.length; j++) {
+                        image +='<img src="'+img[j]+'" style="height: 100px;width: 100px;margin-right: 10px">'
+                    }
                 }
-                console.log(result[i])
+
+                // console.log(result[i])
                 $("#rp").after(`
                     <div class="row">
                         <div class="col">
@@ -131,6 +129,7 @@
             success:function (result) {
                 if (result["code"] == 200){
                     alert("发表成功")
+                    location.reload();
                 }else{
                     alert("请登录")
                 }
