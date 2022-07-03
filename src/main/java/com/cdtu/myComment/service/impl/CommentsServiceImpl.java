@@ -148,6 +148,7 @@ public class CommentsServiceImpl implements CommentsService {
         HashMap<String, Object> map = new HashMap<>();
         if (session.getAttribute("username") != null){
             User user = (User) session.getAttribute("user");
+            //System.out.println(user);
             username = user.getId().toString();
         }else{
             map.put("code","201");
@@ -181,7 +182,7 @@ public class CommentsServiceImpl implements CommentsService {
             }
         }
         Comments comments = new Comments();
-        comments.setUserid(userDao.getByUsername(username));
+        comments.setUserid(Integer.valueOf(username));
         comments.setShopid(Integer.valueOf(shopId));
         comments.setImg(String.valueOf(img));
         comments.setScore(score);

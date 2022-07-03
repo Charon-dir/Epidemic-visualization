@@ -69,7 +69,6 @@ public class ShopServiceImpl implements ShopService {
     public Shop insert(MultipartFile file, String name, String typeId, String address, String introduction) throws IOException {
         User user = (User) session.getAttribute("user");
         String myurl = "img/shop/user"+user.getId();
-
         String realPath = request.getServletContext().getRealPath("/") + myurl+"/";
         File folder = new File(realPath);
         if (!folder.exists()){
@@ -86,7 +85,7 @@ public class ShopServiceImpl implements ShopService {
         System.out.println(read);
         ImageIO.write(read,"jpg",new File(output.getAbsoluteFile()+"\\show.jpg"));
         Shop shop = new Shop();
-        shop.setImg(myurl+"show.jpg");
+        shop.setImg(myurl+"/show.jpg");
         shop.setAddress(address);
         shop.setName(name);
         shop.setIntroduction(introduction);
